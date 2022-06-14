@@ -76,3 +76,25 @@ waitpid(pid, &status, WUNTRACED);
 }
 return (1);
 }
+/**
+ * Execute shell built-in or launch program.
+ * param args Null terminated list of arguments.
+ * return 1 if the shell should continue running,
+ * 0 if it should terminate
+ */
+int _execute(char **args)
+{
+int i;
+if (args[0] == NULL)
+{
+return (1);
+}
+for (i = 0; i < _builtins(); i++)
+{
+if (strcmp(args[0], builtin_str[i]) == 0)
+{
+return ((*builtin_func[i])(args));
+}
+}
+return (_launch(args));
+}
