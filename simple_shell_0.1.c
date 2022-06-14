@@ -6,11 +6,8 @@
 #include <string.h>
 
 /**
- * args - arguments **args.
- * return int return value.
- *
- *  cd - Is a builtin function.
- *
+ * cd - change dir.
+ * **args - permater.
  */
 int cd(char **args);
 
@@ -27,4 +24,25 @@ int (*builtin_func[]) (char **) = {&cd
 int _builtins(void)
 {
 return (sizeof(builtin_str) / sizeof(char *));
+}
+
+/**
+ * Bultin command: change directory.
+ * param args List of args.  args[0] is "cd".  args[1] is the directory.
+ * return Always returns 1, to continue executing.
+ */
+int cd(char **args)
+{
+if (args[1] == NULL)
+{
+fprintf(stderr, "bash: expected argument to \"cd\"\n");
+}
+else
+{
+if (chdir(args[1]) != 0)
+{
+perror("bash");
+}
+}
+return (1);
 }
