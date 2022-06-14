@@ -218,4 +218,14 @@ free(line);
 free(args);
 } while (status);
 }
-
+/**
+ * Main entry point.
+ * argc Argument count.
+ * param argv Argument vector.
+ * return status code
+ */
+int main(void)
+{
+_loop();
+return (EXIT_SUCCESS);
+}
