@@ -201,3 +201,21 @@ token = strtok(NULL, bash_TOK_DELIM);
 tokens[position] = NULL;
 return (tokens);
 }
+/**
+  * Loop getting input and executing it.
+ */
+void _loop(void)
+{
+char *line;
+char **args;
+int status;
+do {
+printf("#cisfun$ ");
+line = _read_line();
+args = _split_line(line);
+status = _execute(args);
+free(line);
+free(args);
+} while (status);
+}
+
