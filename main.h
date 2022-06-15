@@ -8,7 +8,7 @@
 #include <string.h>
 
 
-
+int _putchar (char c);
 int cd(char **args);
 int _launch(char **args);
 int _execute(char **args);

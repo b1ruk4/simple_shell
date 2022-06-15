@@ -45,4 +45,3 @@ exit(EXIT_FAILURE);
 }
 }
 
-[A[3~[3~
