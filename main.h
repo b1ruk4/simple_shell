@@ -12,17 +12,31 @@
 #include <time.h>
 #include <stdbool.h>
 
+/**
+ * struct builtin - is a structure for a builtin object
+ * @env: is the environment element
+ * @exit: is the exit element
+ */
 struct builtin
 {
 	char *env;
 	char *exit;
 } builtin;
 
+/**
+ * struct flags - is a structure for a flag object
+ * @interactive: is the interactive element
+ */
 struct flags
 {
 	bool interactive;
 } flags;
 
+/**
+ * struct info - is a structure for information object
+ * @final_exit: is the final exit element
+ * @ln_count: is the line count element
+ */
 struct info
 {
 	int final_exit;
