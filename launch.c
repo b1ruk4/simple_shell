@@ -1,32 +1,34 @@
 #include "main.h"
 
 /**
-  * _launch - a program and wait for it to terminate.
-  * @args: Null terminated list of arguments (including program).
-  * Return: Always returns 1, to continue execution.
-*/
-int _launch(char **args)
+ * execution - executes commands entered by users
+ *@cp: command
+ *@cmd:vector array of pointers to commands
+ * Return: 0
+ */
+void execution(char *cp, char **cmd)
 {
-pid_t pid;
-int status;
-pid = fork();
-if (pid == 0)
-{
-if (execvp(args[0], args) == -1)
-{
-perror("./shell");
+	pid_t child_pid;
+	int status;
+	char **env = environ;
+
+	child_pid = fork();
+	if (child_pid < 0)
+	{
+		perror(cp);
+		free(cp);
+		free_buffers(cmd);
+		exit(EXIT_FAILURE);
+	}
+	else if (child_pid == 0)
+	{
+		execve(cp, cmd, env);
+		perror(cp);
+		free(cp);
+		free_buffers(cmd);
+		exit(98);
+	}
+	else
+		wait(&status);
 }
-exit(EXIT_FAILURE);
-}
-else if (pid < 0)
-{
-perror("bash");
-}
-else
-{
-do {
-waitpid(pid, &status, WUNTRACED);
-} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-}
-return (1);
-}
+
