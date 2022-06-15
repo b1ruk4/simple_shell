@@ -6,8 +6,8 @@
  */
 int main(void)
 {
-	char *betty = ("betty is the best");
+char *betty = ("betty is the best");
 
-	printf("%s \n", betty);
-	return (0);
+printf("%s \n", betty);
+return (0);
 }
