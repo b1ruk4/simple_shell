@@ -7,14 +7,14 @@
 */
 void print_env(void)
 {
-	int x = 0;
+	int p = 0;
 	char **env = environ;
 
-	while (env[x] != NULL)
+	while (env[p] != NULL)
 	{
-		write(STDOUT_FILENO, (const void *)env[x], _strlen(env[x]));
+		write(STDOUT_FILENO, (const void *)env[p], _strlen(env[p]));
 		write(STDOUT_FILENO, "\n", 1);
-		x++;
+		p++;
 	}
 }
 
