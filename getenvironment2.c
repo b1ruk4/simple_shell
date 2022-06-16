@@ -2,7 +2,6 @@
 /**
  * getallenv - get all environment
  * Return: environment
- *
  */
 char **getallenv()
 {
@@ -13,9 +12,6 @@ char **getallenv()
 	envcopy = environ;
 	while (envcopy[len] != NULL)
 		len++;
-#ifdef DEBUGMODE
-	printf("Got length of env lines %d\nNow copying\n", len);
-#endif
 	envcopy = malloc(sizeof(char **) * (len + 1));
 	if (envcopy == NULL)
 		return (NULL);
@@ -33,7 +29,6 @@ char **getallenv()
  * @newval: new value to be added
  * Return: 0 if success, -1 if failure
  */
-/* add should be null for first init to not free passed array */
 int setallenv(char **envin, char *newval)
 {
 	char ***environ = getenviron();
@@ -91,9 +86,6 @@ char *_getenv(char *name)
 	{
 		s = environ[i];
 		j = 0;
-#ifdef DEBUGSVARS
-		printf("Checking against:%s\n", environ[i]);
-#endif
 		while (s[j] == name[j])
 		{
 			j++;
@@ -117,9 +109,6 @@ int _setenv(char *name, char *val)
 	int i, j, namel, vall;
 	char *s, *ptr;
 
-#ifdef DEBUGMODE
-	printf("In setenv, name:%s:val:%s\n", name, val);
-#endif
 	if (name == NULL || val == NULL)
 		return (0);
 	namel = _strlen(name);
@@ -134,9 +123,7 @@ int _setenv(char *name, char *val)
 	_strcpy(s, val);
 	s += vall;
 	*s = 0;
-#ifdef DEBUGMODE
-	printf("Ptr mallocd:%s\n", ptr);
-#endif
+
 	i = 0;
 	while (environ[i] != NULL)
 	{
@@ -156,61 +143,4 @@ int _setenv(char *name, char *val)
 	}
 	return (setallenv(*environroot, ptr));
 }
-/**
- * _unsetenv - unset environment
- * @name: name of variable to unset
- * Return: 0 if sucess
- *
- * testing functionality  copy environ, if hits skip over, realloc
- */
-int _unsetenv(char *name)
-{
-	char **environ = *getenviron();
-	int i, j;
-	int check = 0;
-	char *s;
-	char **env;
-
-#ifdef DEBUGMODE
-	printf("In unsetenv, name:%s\n", name);
-#endif
-	if (name == NULL)
-		return (0);
-
-	i = 0;
-	while (environ[i] != NULL)
-	{
-		s = environ[i];
-		j = 0;
-		while (s[j] == name[j])
-		{
-			j++;
-			if (s[j] == '=' && name[j] == '\0')
-			{
-				check = 1;
-				break;
-			}
-		}
-		if (check == 1)
-			break;
-		i++;
-	}
-	free(environ[i]);
-	while (environ[i] != NULL)
-	{
-		environ[i] = environ[i + 1];
-		i++;
-	}
-	environ[i] = NULL;
-	env = environ;
-	setallenv(env, NULL);
-	i = 0;
-	while (env[i])
-	{
-		free(env[i]);
-		i++;
-	}
-	free(env);
-	return (0);
 }
-
