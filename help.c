@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
  * help - help builtin command
  * @cmd: the command line inserted
