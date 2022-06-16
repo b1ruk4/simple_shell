@@ -20,6 +20,7 @@
 struct builtin
 {
 	char *env;
+	char *exit;
 
 } builtin;
 
@@ -46,10 +47,10 @@ struct info
 int _putchar(char c);
 int print_s(char *s);
 int main(int ac, char **av, char *envp[]);
-int handle_builtin(char **command);
+int handle_builtin(char **command, char *line);
 void print_env(void);
 void exit_cmd(char **command, char *line);
-int checker(char **cmd);
+int checker(char **cmd, char *buf);
 char *append_path(char *path, char *command);
 void handle_signal(int m);
 char *test_path(char **path, char *command);

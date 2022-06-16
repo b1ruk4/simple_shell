@@ -33,7 +33,7 @@ int main(int ac, char **av, char *envp[])
 		command = tokenizer(line);
 		if (command == NULL || *command == NULL || **command == '\0')
 			continue;
-		if (checker(command))
+		if (checker(command, line))
 			continue;
 		path = find_path();
 		paths = tokenizer(path);

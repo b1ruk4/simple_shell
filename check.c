@@ -5,9 +5,9 @@
  *@buf: line drived fromgetline function
  *Return: 1 if cmd excuted 0 if cmd is not executed
  */
-int checker(char **cmd)
+int checker(char **cmd, char *buf)
 {
-	if (handle_builtin(cmd))
+	if (handle_builtin(cmd, buf))
 		return (1);
 	else if (**cmd == '/')
 	{
@@ -16,4 +16,3 @@ int checker(char **cmd)
 	}
 	return (0);
 }
-
