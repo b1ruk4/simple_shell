@@ -71,5 +71,9 @@ void free_buffers(char **buf);
 int print_number(int n);
 /*int execution(char **commands, char *err);*/
 char *merge_path(char *path, char *command);
-
+int printerr(char *);
+int _setenv(char *name, char *val);
+char *_getenv(char *avzero);
+char *itos(int digits);
+int linecount(int increment)
 #endif/*End SHELL_H*/

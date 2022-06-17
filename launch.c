@@ -16,9 +16,7 @@ void execution(char *cp, char **cmd)
 	if (child_pid < 0)
 	{
 		perror(cp);
-		free(cp);
-		free_buffers(cmd);
-		exit(EXIT_FAILURE);
+
 	}
 	else if (child_pid == 0)
 	{
