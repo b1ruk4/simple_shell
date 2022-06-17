@@ -70,6 +70,6 @@ void free_buffers(char **buf);
 /*int exit_cmd(char **command, char *line);*/
 int print_number(int n);
 /*int execution(char **commands, char *err);*/
-
+char *merge_path(char *path, char *command);
 
 #endif/*End SHELL_H*/
